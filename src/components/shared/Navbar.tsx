@@ -6,6 +6,7 @@ const Navbar = () => {
    const NavLinks = (
   <>
     <Link href="/">Workouts</Link>
+    <Link href="/my-plan">MyPlan</Link>
   </>
 );
   return (
@@ -34,7 +35,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow gap-5"
           >
          {NavLinks}
           </ul>
@@ -50,8 +51,8 @@ const Navbar = () => {
           <a className=" text-white text-xl font-bold">FITLOG</a>
       </div>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+      <div className="navbar-center hidden lg:flex ">
+        <ul className="menu menu-horizontal px-1 gap-5">
             {NavLinks}
         </ul>
       </div>

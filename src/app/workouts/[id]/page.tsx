@@ -1,3 +1,5 @@
+import SaveButton from "@/components/workDetails/SaveButton";
+import ToadayPanButton from "@/components/workDetails/ToadayPanButton";
 import { IWorkout } from "@/types/types";
 import Image from "next/image";
 import React from "react";
@@ -30,7 +32,7 @@ const WorkOutDetailsPage = async ({ params }: WorkOutDetailsPageProps) => {
         alt={workout.name}
         width={700}
         height={700}
-        className="w-full h-[420px] object-cover rounded-xl"
+        className="w-full h-[700px] object-cover rounded-xl"
       />
     </div>
 
@@ -144,13 +146,9 @@ const WorkOutDetailsPage = async ({ params }: WorkOutDetailsPageProps) => {
 
       {/* Buttons */}
       <div className="flex gap-3 mt-6">
-        <button className="bg-[#c2f800] text-black px-4 py-2 rounded-lg text-xs font-bold">
-          Add to today's plan
-        </button>
-
-        <button className="border border-[#30333b] text-white px-4 py-2 rounded-lg text-xs">
-          Save for later
-        </button>
+     
+          <ToadayPanButton  workout={workout}/>
+        <SaveButton workout={workout} />
       </div>
     </div>
   </div>
