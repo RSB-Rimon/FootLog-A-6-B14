@@ -1,6 +1,6 @@
 "use client";
 
-import WorkoutCard from "@/components/WorkoutsCard";
+
 import { WorkOutContext } from "@/context/WorkOutContext";
 import { IWorkout } from "@/types/types";
 import React, { useContext, useState } from "react";
@@ -13,9 +13,25 @@ import MyPlanPagesCard from "@/components/MyPlanPagesCard";
 
 const TodayPlanPage = () => {
   const { todayPlan, saveWorkOut } = useContext(WorkOutContext);
-  const [sortBy, setSortBy] = useState<"rating" | "duration" |"calories" >("rating")
+  const [sortBy, setSortBy] = useState<"rating" | "duration" |"caloriesBurned" >("rating")
 
-  console.log(sortBy , "short by okol ta ")
+
+  const sortWorkOUt = (workout:IWorkout[])=>{
+    const sortWorkOuts = [...workout];
+    if(sortBy==='rating'){
+      sortWorkOuts.sort((a,b)=> a.rating - b.rating)
+    }else if(sortBy === "duration"){
+      sortWorkOuts.sort((a,b)=>a.duration - b.duration)
+    }else if(sortBy === "caloriesBurned"){
+      sortWorkOuts.sort((a,b)=> a.caloriesBurned - b.caloriesBurned)
+    }
+    return sortWorkOuts;
+
+  }
+  const sortedTodayPlan = sortWorkOUt(todayPlan);
+  const sortedSaveWorkOut = sortWorkOUt(saveWorkOut)
+
+
 
   return (
     <div className="container mx-auto text-white px-4 m-5">
@@ -30,20 +46,20 @@ const TodayPlanPage = () => {
 
         <select 
         value={sortBy}
-        onChange={(e)=> setSortBy(e.target.value as "rating" |"duration" |"calories")}
+        onChange={(e)=> setSortBy(e.target.value as "rating" |"duration" |"caloriesBurned")}
         
         defaultValue="sort by"  className="select select-success bg-[#99cd5e] text-black">
         <option  disabled={true}>Sort by</option>
         <option value={"rating"}>Rating</option>
         <option value={"duration"}>Duration</option>
-        <option value={"calories"}>Calories</option>
+        <option value={"caloriesBurned"}>caloriesBurned</option>
       </select>
     </div>
 
       {/* tabs */}
-      <div className="tabs tabs-lift text-black mt-7">
+      <div className="tabs tabs-lift text-black bg-white mt-7 ">
         {/* Today's Plan */}
-        <input
+        <input 
           type="radio"
           name="my_tabs_3"
           className="tab"
@@ -52,9 +68,9 @@ const TodayPlanPage = () => {
         />
 
         <div className="tab-content w-full bg-black p-6 text-white">
-          {todayPlan.length > 0 ? (
+          {sortedTodayPlan.length > 0 ? (
             <div className="w-full space-y-3">
-              {todayPlan.map((workout: IWorkout) => (
+              {sortedTodayPlan.map((workout: IWorkout) => (
                 <MyPlanPagesCard key={workout.id} workout={workout} />
               ))}
             </div>
@@ -87,9 +103,9 @@ const TodayPlanPage = () => {
         />
 
         <div className=" tab-content w-full bg-black p-6 text-white">
-          {saveWorkOut.length > 0 ? (
+          {sortedSaveWorkOut.length > 0 ? (
             <div className="w-full space-y-3">
-              {todayPlan.map((workout: IWorkout) => (
+              {sortedSaveWorkOut.map((workout: IWorkout) => (
                 <MyPlanPagesCard key={workout.id} workout={workout} />
               ))}
             </div>
