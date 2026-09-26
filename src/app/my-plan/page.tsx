@@ -5,9 +5,14 @@ import { WorkOutContext } from "@/context/WorkOutContext";
 import { IWorkout } from "@/types/types";
 import React, { useContext } from "react";
 import Link from "next/link";
+import MyPlanPagesCard from "@/components/MyPlanPagesCard";
+// interface IWorkOutContext {
+//   todayPlan: IWorkout[];
+//   saveWorkOut: (workout: IWorkout) => void;
+// }
 
 const TodayPlanPage = () => {
-  const { todayPlan, saveWorkOut } = useContext(WorkOutContext);
+  const { todayPlan, saveWorkOut }= useContext(WorkOutContext);
 
   return (
     <div className="container mx-auto text-white px-4 m-5">
@@ -33,7 +38,7 @@ const TodayPlanPage = () => {
           {todayPlan.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {todayPlan.map((workout: IWorkout) => (
-                <WorkoutCard
+                <MyPlanPagesCard
                   key={workout.id}
                   workout={workout}
                 />
@@ -74,7 +79,7 @@ const TodayPlanPage = () => {
           {saveWorkOut.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {saveWorkOut.map((workout: IWorkout) => (
-                <WorkoutCard
+                <MyPlanPagesCard
                   key={workout.id}
                   workout={workout}
                 />

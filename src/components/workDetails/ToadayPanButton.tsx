@@ -1,7 +1,7 @@
 'use client'
 import { WorkOutContext } from '@/context/WorkOutContext';
 import { IWorkout } from '@/types/types';
-import { CalendarPlus2, ClipboardPlus } from 'lucide-react';
+import { CalendarPlus2} from 'lucide-react';
 import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 
