@@ -3,7 +3,7 @@
 import WorkoutCard from "@/components/WorkoutsCard";
 import { WorkOutContext } from "@/context/WorkOutContext";
 import { IWorkout } from "@/types/types";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import MyPlanPagesCard from "@/components/MyPlanPagesCard";
 // interface IWorkOutContext {
@@ -13,6 +13,9 @@ import MyPlanPagesCard from "@/components/MyPlanPagesCard";
 
 const TodayPlanPage = () => {
   const { todayPlan, saveWorkOut } = useContext(WorkOutContext);
+  const [sortBy, setSortBy] = useState<"rating" | "duration" |"calories" >("rating")
+
+  console.log(sortBy , "short by okol ta ")
 
   return (
     <div className="container mx-auto text-white px-4 m-5">
@@ -21,6 +24,21 @@ const TodayPlanPage = () => {
       <p className="my-3 text-gray-400">
         Cap of five lifts for today. Finish them, then load more.
       </p>
+      {/* this is Sorting section  */}
+
+    <div className="text-center">
+
+        <select 
+        value={sortBy}
+        onChange={(e)=> setSortBy(e.target.value as "rating" |"duration" |"calories")}
+        
+        defaultValue="sort by"  className="select select-success bg-[#99cd5e] text-black">
+        <option  disabled={true}>Sort by</option>
+        <option value={"rating"}>Rating</option>
+        <option value={"duration"}>Duration</option>
+        <option value={"calories"}>Calories</option>
+      </select>
+    </div>
 
       {/* tabs */}
       <div className="tabs tabs-lift text-black mt-7">
