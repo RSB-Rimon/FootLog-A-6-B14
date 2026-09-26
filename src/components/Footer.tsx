@@ -4,15 +4,27 @@ import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
-   <footer className="bg-[#0C0D10] border-t border-[#202228] mt-7">
-     <div className="flex justify-between container mx-auto shadow-2xl py-4  text-[#77787d] text-sm">
-      <div className="flex items-center  gap-2  ">
-        <Image src={logo} alt="Picture of the author" width={30} height={30} />
-        <a className=" text-white text-xl font-bold">FITLOG</a>
-      </div>
-      <p> © 2026 FitLog — Workout Library. Train hard, log honest.</p>
+ <footer className="mt-7 border-t border-[#202228] bg-[#0C0D10]">
+  <div className="container mx-auto flex flex-col items-center justify-between gap-3 px-4 py-4 text-sm text-[#77787d] sm:flex-row">
+    
+    <div className="flex items-center gap-2">
+      <Image
+        src={logo}
+        alt="FitLog logo"
+        width={30}
+        height={30}
+      />
+      <a className="text-xl font-bold text-white">
+        FITLOG
+      </a>
     </div>
-   </footer>
+
+    <p className="text-center sm:text-right">
+      © 2026 FitLog — Workout Library. Train hard, log honest.
+    </p>
+
+  </div>
+</footer> 
   );
 };
 
