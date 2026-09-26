@@ -12,7 +12,7 @@ import MyPlanPagesCard from "@/components/MyPlanPagesCard";
 // }
 
 const TodayPlanPage = () => {
-  const { todayPlan, saveWorkOut }= useContext(WorkOutContext);
+  const { todayPlan, saveWorkOut } = useContext(WorkOutContext);
 
   return (
     <div className="container mx-auto text-white px-4 m-5">
@@ -24,7 +24,6 @@ const TodayPlanPage = () => {
 
       {/* tabs */}
       <div className="tabs tabs-lift text-black mt-7">
-        
         {/* Today's Plan */}
         <input
           type="radio"
@@ -34,19 +33,15 @@ const TodayPlanPage = () => {
           defaultChecked
         />
 
-        <div className="tab-content bg-black p-6 text-white">
+        <div className="tab-content w-full bg-black p-6 text-white">
           {todayPlan.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="w-full space-y-3">
               {todayPlan.map((workout: IWorkout) => (
-                <MyPlanPagesCard
-                  key={workout.id}
-                  workout={workout}
-                />
+                <MyPlanPagesCard key={workout.id} workout={workout} />
               ))}
             </div>
           ) : (
             <div className="min-h-[300px] border border-dotted border-gray-600 flex flex-col items-center justify-center text-center">
-              
               <h2 className="text-lg font-bold tracking-wide">
                 NOTHING HERE YET
               </h2>
@@ -61,11 +56,9 @@ const TodayPlanPage = () => {
               >
                 Go to workouts
               </Link>
-
             </div>
           )}
         </div>
-
 
         {/* Saved */}
         <input
@@ -75,19 +68,15 @@ const TodayPlanPage = () => {
           aria-label="Saved"
         />
 
-        <div className="tab-content bg-black p-6 text-white">
+        <div className=" tab-content w-full bg-black p-6 text-white">
           {saveWorkOut.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {saveWorkOut.map((workout: IWorkout) => (
-                <MyPlanPagesCard
-                  key={workout.id}
-                  workout={workout}
-                />
+            <div className="w-full space-y-3">
+              {todayPlan.map((workout: IWorkout) => (
+                <MyPlanPagesCard key={workout.id} workout={workout} />
               ))}
             </div>
           ) : (
             <div className="min-h-[300px] border border-dotted border-gray-600 flex flex-col items-center justify-center text-center">
-              
               <h2 className="text-lg font-bold tracking-wide">
                 NOTHING HERE YET
               </h2>
@@ -102,11 +91,9 @@ const TodayPlanPage = () => {
               >
                 Go to workouts
               </Link>
-
             </div>
           )}
         </div>
-
       </div>
     </div>
   );
