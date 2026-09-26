@@ -4,20 +4,34 @@ import { IWorkout } from '@/types/types';
 
 
 
-
  export const WorkOutContext = createContext({})
 
 
-const WorkOutProvider = ({children}:{children: ReactNode}) => {
-   const [todayPlan, setTodayPlan] = useState<IWorkout[]>([]);
+ const WorkOutProvider = ({children}:{children: ReactNode}) => {
+     const [todayPlan, setTodayPlan] = useState<IWorkout[]>([]);
+     const [saveWorkOut , setSaveWorkOut] = useState<IWorkout[]>([]);
 
-    const [saveWorkOut , setSaveWorkOut] = useState<IWorkout[]>([]);
+   const removeFromTodayPlan =(id:number)=>{
+    setTodayPlan((work)=>
+    work.filter((workout)=> workout.id!== id));
+
+   };
+   const removeFromSave =(id:number)=>{
+    setSaveWorkOut((work)=>
+    work.filter((workout)=> workout.id!== id));
+
+   };
+
+
 
     const sharedData = {
         todayPlan,
         setTodayPlan,
         saveWorkOut,
-        setSaveWorkOut
+        setSaveWorkOut,
+        removeFromTodayPlan,
+        removeFromSave
+
     }
     return <WorkOutContext.Provider value={sharedData}>{children}</WorkOutContext.Provider>
 };

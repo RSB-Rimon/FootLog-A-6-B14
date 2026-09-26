@@ -19,11 +19,11 @@ const TodayPlanPage = () => {
   const sortWorkOUt = (workout:IWorkout[])=>{
     const sortWorkOuts = [...workout];
     if(sortBy==='rating'){
-      sortWorkOuts.sort((a,b)=> a.rating - b.rating)
+      sortWorkOuts.sort((a,b)=> b.rating - a.rating)
     }else if(sortBy === "duration"){
-      sortWorkOuts.sort((a,b)=>a.duration - b.duration)
+      sortWorkOuts.sort((a,b)=>b.duration - a.duration)
     }else if(sortBy === "caloriesBurned"){
-      sortWorkOuts.sort((a,b)=> a.caloriesBurned - b.caloriesBurned)
+      sortWorkOuts.sort((a,b)=> b.caloriesBurned - a.caloriesBurned)
     }
     return sortWorkOuts;
 
@@ -42,22 +42,24 @@ const TodayPlanPage = () => {
       </p>
       {/* this is Sorting section  */}
 
-    <div className="text-center">
-
-        <select 
-        value={sortBy}
-        onChange={(e)=> setSortBy(e.target.value as "rating" |"duration" |"caloriesBurned")}
-        
-        defaultValue="sort by"  className="select select-success bg-[#99cd5e] text-black">
-        <option  disabled={true}>Sort by</option>
-        <option value={"rating"}>Rating</option>
-        <option value={"duration"}>Duration</option>
-        <option value={"caloriesBurned"}>caloriesBurned</option>
-      </select>
-    </div>
+   <div className="text-center">
+  <select
+    value={sortBy}
+    onChange={(e) =>
+      setSortBy(
+        e.target.value as "rating" | "duration" | "caloriesBurned"
+      )
+    }
+    className="select select-success bg-[#89fc05] text-black"
+  >
+    <option value="rating">Rating</option>
+    <option value="duration">Duration</option>
+    <option value="caloriesBurned">Calories Burned</option>
+  </select>
+</div>
 
       {/* tabs */}
-      <div className="tabs tabs-lift text-black bg-white mt-7 ">
+      <div className="tabs tabs-lift text-black bg-gray-400 mt-7 ">
         {/* Today's Plan */}
         <input 
           type="radio"
@@ -70,8 +72,9 @@ const TodayPlanPage = () => {
         <div className="tab-content w-full bg-black p-6 text-white">
           {sortedTodayPlan.length > 0 ? (
             <div className="w-full space-y-3">
-              {sortedTodayPlan.map((workout: IWorkout) => (
-                <MyPlanPagesCard key={workout.id} workout={workout} />
+              {sortedTodayPlan.map((workout: IWorkout, index:number) => (
+                <MyPlanPagesCard key={`${workout.id}-${index}`} workout={workout}
+                 type="today" />
               ))}
             </div>
           ) : (
@@ -105,8 +108,10 @@ const TodayPlanPage = () => {
         <div className=" tab-content w-full bg-black p-6 text-white">
           {sortedSaveWorkOut.length > 0 ? (
             <div className="w-full space-y-3">
-              {sortedSaveWorkOut.map((workout: IWorkout) => (
-                <MyPlanPagesCard key={workout.id} workout={workout} />
+              {sortedSaveWorkOut.map((workout: IWorkout , index:number) => (
+                <MyPlanPagesCard key={`${workout.id}-${index}`} workout={workout}
+                 type="saved"
+                />
               ))}
             </div>
           ) : (

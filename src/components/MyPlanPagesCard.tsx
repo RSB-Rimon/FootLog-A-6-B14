@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IWorkout } from "@/types/types";
 import Image from "next/image";
+import Link from "next/link";
+import { Check, X } from "lucide-react";
+import { WorkOutContext } from "@/context/WorkOutContext";
+import { toast } from "react-toastify";
 
-interface WorkoutCardProps {
+interface WorkoutCardProps {  
   workout: IWorkout;
+   type: "today" | "saved";
 }
 
-const MyPlanPagesCard = ({ workout }: WorkoutCardProps) => {
+const MyPlanPagesCard = ({ workout,type}: WorkoutCardProps) => {
+  const {removeFromTodayPlan,removeFromSave }=useContext(WorkOutContext)
+
+  const handleRemove = () => {
+  if (type  === "today") {
+    removeFromTodayPlan(workout.id);
+    toast.success("Work Out remove from today's plan")
+  } else {
+    removeFromSave(workout.id);
+      toast.success("Work Out remove from saved")
+  }
+};
   return (
  <div className="w-full rounded-xl border border-[#242a33] bg-[#15191f] px-4 py-3">
   <div className="flex w-full items-center gap-4">
@@ -52,16 +68,25 @@ const MyPlanPagesCard = ({ workout }: WorkoutCardProps) => {
 
     {/* Buttons */}
     <div className="flex shrink-0 items-center gap-2">
-      <button className="rounded-full border border-[#303640] px-4 py-2 text-[9px] text-gray-300">
+     <Link href={`/workouts/${workout.id}`}>
+        <button className="rounded-full border border-[#303640] px-4 py-2 text-[9px] text-gray-300">
         View Details
       </button>
+     
+     </Link>
 
-      <button className="rounded-full bg-[#c2f800] px-5 py-2 text-[9px] font-bold text-black">
-        ✓ Mark as Done
+     <div className="">
+       <button className="rounded-full flex items-center bg-[#c2f800] px-5 py-2 text-[9px] font-bold text-black">
+        <Check size={16}/> Mark as Done
       </button>
+     </div>
 
-      <button className="px-1 text-gray-600 hover:text-white">
-        ×
+      <button
+      onClick={handleRemove}
+      
+      
+      className="px-1 text-gray-600 hover:text-white">
+     <X  />
       </button>
     </div>
 
