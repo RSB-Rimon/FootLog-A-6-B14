@@ -12,14 +12,8 @@ interface WorkOutContextType {
   removeFromSave: (id: number) => void;
 }
 
-export const WorkOutContext = createContext<WorkOutContextType>({
-  todayPlan: [],
-  setTodayPlan: () => undefined,
-  saveWorkOut: [],
-  setSaveWorkOut: () => undefined,
-  removeFromTodayPlan: () => undefined,
-  removeFromSave: () => undefined,
-});
+export const WorkOutContext = createContext<WorkOutContextType | null>(null) 
+ 
 
 const WorkOutProvider = ({ children }: { children: ReactNode }) => {
   const [todayPlan, setTodayPlan] = useState<IWorkout[]>([]);

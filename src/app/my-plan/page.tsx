@@ -98,7 +98,7 @@ const TodayPlanPage = () => {
         </select>
       </div>
 
-      {/* ================= TABS ================= */}
+      {/*  TABS */}
       <div className="mt-7">
 
         {/* Tab Buttons */}
@@ -130,7 +130,7 @@ const TodayPlanPage = () => {
 
         </div>
 
-        {/* ================= TODAY'S PLAN ================= */}
+        {/* TODAY'S PLAN  */}
         {activeTab === "today" && (
           <div className="w-full bg-black p-6 text-white">
 
@@ -173,7 +173,7 @@ const TodayPlanPage = () => {
           </div>
         )}
 
-        {/* ================= SAVED ================= */}
+        {/* SAVED  */}
         {activeTab === "saved" && (
           <div className="w-full bg-black p-6 text-white">
 
