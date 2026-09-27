@@ -7,7 +7,7 @@ import Link from "next/link";
 import { WorkOutContext } from "@/context/WorkOutContext";
 
 const Navbar = () => {
-  const { todayPlan, saveWorkOut } = useContext(WorkOutContext);
+  const { todayPlan, saveWorkOut } = useContext(WorkOutContext)!;
 
   // const { todayPlan, savedWorkOut } = useContext(WorkOutContext);
 

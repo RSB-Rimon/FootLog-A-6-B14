@@ -6,7 +6,7 @@ import React, { useContext } from "react";
 import { toast } from "react-toastify";
 
 const SaveButton = ({ workout }: { workout: IWorkout }) => {
-  const { saveWorkOut, setSaveWorkOut } = useContext(WorkOutContext);
+  const { saveWorkOut, setSaveWorkOut } = useContext(WorkOutContext)!;
 
   const handleSaveBtn = () => {
     console.log("TodayPlan tiger", workout);

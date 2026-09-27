@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const ToadayPanButton = ({workout}:{workout:IWorkout}) => {
 
-    const { todayPlan, setTodayPlan}= useContext(WorkOutContext);
+    const { todayPlan, setTodayPlan}= useContext(WorkOutContext)!;
    
 
     const handleTodayPlan = ()=>{

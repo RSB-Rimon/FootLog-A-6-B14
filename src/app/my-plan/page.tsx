@@ -7,7 +7,7 @@ import Link from "next/link";
 import MyPlanPagesCard from "@/components/MyPlanPagesCard";
 
 const TodayPlanPage = () => {
-  const { todayPlan, saveWorkOut } = useContext(WorkOutContext);
+  const { todayPlan, saveWorkOut } = useContext(WorkOutContext)!;
 
   const [sortBy, setSortBy] = useState<
     "rating" | "duration" | "caloriesBurned"
