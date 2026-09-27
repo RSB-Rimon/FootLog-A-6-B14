@@ -11,28 +11,15 @@ interface WorkOutDetailsPageProps {
   }>;
 }
 
-const getWorkouts = async (): Promise<IWorkout[]> => {
-  try {
-    const res = await fetch("https://api.api-store.workers.dev/api/fitlog", {
-      cache: "no-store",
-    });
 
-    if (!res.ok) {
-      return [];
-    }
 
-    const contentType = res.headers.get("content-type") || "";
-    if (!contentType.includes("application/json")) {
-      return [];
-    }
+const getWorkouts = async ()=>{
+  const res = await fetch('https://api.api-store.workers.dev/api/fitlog');
+  const data = await res.json()
+  return data
+}
+  
 
-    const data = await res.json();
-    return Array.isArray(data) ? data : [];
-  } catch (error) {
-    console.error("Failed to load workout details:", error);
-    return [];
-  }
-};
 
 const WorkOutDetailsPage = async ({ params }: WorkOutDetailsPageProps) => {
   const { id } = await params;
@@ -66,7 +53,7 @@ const WorkOutDetailsPage = async ({ params }: WorkOutDetailsPageProps) => {
           <p className="text-[#77787d] text-sm mt-2">{workout.description}</p>
 
           <div className="flex gap-2 mt-4">
-            {workout.muscleGroups.map((muscle) => (
+            {workout.muscleGroups.map((muscle:string) => (
               <span
                 key={muscle}
                 className="bg-[#c2f800] text-black text-xs font-bold px-3 py-1 rounded-full"
@@ -124,14 +111,8 @@ const WorkOutDetailsPage = async ({ params }: WorkOutDetailsPageProps) => {
               Instructions
             </h2>
 
-            <ol className="mt-3 space-y-2">
-              {workout.instructions.map((instruction, index) => (
-                <li key={index} className="text-[#85868b] text-xs">
-                  {index + 1}. {instruction}
-                </li>
-              ))}
-            </ol>
-          </div>
+            
+            </div>
 
           <div className="flex gap-3 mt-6">
             <ToadayPanButton workout={workout} />

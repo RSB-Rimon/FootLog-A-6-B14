@@ -2,33 +2,19 @@ import WorkoutCard from "@/components/WorkoutsCard";
 import { IWorkout } from "@/types/types";
 import React from "react";
 
-const getWorkouts = async (): Promise<IWorkout[]> => {
-  try {
-    const res = await fetch("https://api.api-store.workers.dev/api/fitlog", {
-      cache: "no-store",
-    });
+const getWorkouts = async ()=>{
+  const res = await fetch('https://api.api-store.workers.dev/api/fitlog');
+  const data = await res.json()
+  return data
+}
+  
 
-    if (!res.ok) {
-      console.log("API Error:", res.status);
-      return [];
-    }
+ 
 
-    const text = await res.text();
+    
 
-    if (
-      !text ||
-      (!text.trim().startsWith("[") && !text.trim().startsWith("{"))
-    ) {
-      return [];
-    }
 
-    const data = JSON.parse(text);
-    return Array.isArray(data) ? data : [];
-  } catch (error) {
-    console.error("Failed to load workouts:", error);
-    return [];
-  }
-};
+
 
 const WorkoutsPages = async () => {
   const workoutsdata = await getWorkouts();
