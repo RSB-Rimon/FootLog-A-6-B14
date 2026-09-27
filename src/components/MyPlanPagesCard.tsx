@@ -12,7 +12,7 @@ interface WorkoutCardProps {
 }
 
 const MyPlanPagesCard = ({ workout,type}: WorkoutCardProps) => {
-  const {removeFromTodayPlan,removeFromSave }=useContext(WorkOutContext)
+  const {removeFromTodayPlan,removeFromSave }=useContext(WorkOutContext)!;
 
   const handleRemove = () => {
   if (type  === "today") {
