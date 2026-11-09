@@ -17,3 +17,5 @@ Lucide React Icons
 3.Users can save their favorite workouts.
 4.Users can remove workouts from their plan.
 5.Users can see their workout plan in an organized way.
+
+## Livelink: https://foot-log-a-6-b14.vercel.app/
